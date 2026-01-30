@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
-@theme {
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --teal-primary: #0d9488;
+}
+
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -20,22 +26,130 @@
   --color-teal-950: #042f2e;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --teal-primary: #0d9488;
-}
-
 html {
+  font-size: 16px !important;
   scroll-behavior: smooth;
+  /* Fix Brave browser rendering artifacts */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Force GPU acceleration to prevent rendering artifacts */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
+
+/* ========================================
+   BRAVE BROWSER RENDERING FIXES
+   ======================================== */
+
+/* Fix for rendering artifacts (gray/dotted lines) in rounded containers */
+.rounded-3xl,
+.rounded-2xl,
+.rounded-xl,
+.rounded-lg,
+.rounded-md,
+.rounded-\[2\.5rem\],
+.rounded-\[3rem\],
+.rounded-full {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  /* Prevent subpixel rendering issues */
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Fix for gradient backgrounds showing lines */
+[class*="bg-gradient"],
+[class*="from-"],
+[class*="to-"],
+[class*="via-"] {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Fix for section backgrounds */
+section {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Remove dotted focus outlines */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #0d9488;
+  outline-offset: 2px;
+}
+
+/* Remove dotted borders on interactive elements */
+button,
+a,
+input,
+select,
+textarea {
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+button::-moz-focus-inner,
+a::-moz-focus-inner {
+  border: 0;
+}
+
+/* Fix image rendering artifacts */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Fix for overflow containers */
+[class*="overflow-hidden"] {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Fix for border rendering */
+[class*="border"] {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Prevent subpixel antialiasing issues on containers */
+.container,
+main,
+header,
+footer,
+nav {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* ========================================
+   CUSTOM UTILITIES
+   ======================================== */
 
 /* Gradient Text */
 .text-teal-gradient {
