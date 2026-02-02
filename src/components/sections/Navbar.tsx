@@ -24,9 +24,13 @@ export default function Navbar() {
                 <div className="flex h-18 items-center justify-between py-3">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center">
-                            <span className="text-white font-bold text-lg">K</span>
-                        </div>
+                        <Image
+                            src={logoSrc}
+                            alt={siteData.general.brandName}
+                            width={40}
+                            height={40}
+                            className="w-10 h-10 rounded-xl object-contain"
+                        />
                         <span className="text-xl font-bold text-slate-900">
                             {siteData.general.brandName}
                         </span>

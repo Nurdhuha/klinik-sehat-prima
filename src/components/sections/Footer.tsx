@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, Twitter, Youtube, MapPin, Phone, Mail, Clock } from "lucide-react";
 import Container from "@/components/ui/Container";
 import { siteData } from "@/config/site-data";
@@ -14,6 +15,7 @@ const socialIcons = {
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const logoSrc = siteData.general.logo || "/clinic-logo.png";
 
     const handleSocialClick = (platform: keyof typeof siteData.social) => {
         const url = siteData.social[platform];
@@ -27,9 +29,13 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="space-y-4">
                         <Link href="/" className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center">
-                                <span className="text-white font-bold text-lg">K</span>
-                            </div>
+                            <Image
+                                src={logoSrc}
+                                alt={siteData.general.brandName}
+                                width={40}
+                                height={40}
+                                className="w-10 h-10 rounded-xl object-contain"
+                            />
                             <span className="text-xl font-bold">
                                 {siteData.general.brandName}
                             </span>

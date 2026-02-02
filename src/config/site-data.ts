@@ -2,7 +2,7 @@ export const siteData = {
     general: {
         brandName: "Klinik Sehat Prima",
         tagline: "Kesehatan Keluarga Anda Prioritas Kami",
-        logo: "/logo.png",
+        logo: "/clinic-logo.png",
         phone: "+62 21 1234 5678",
         email: "info@kliniksehatprima.id",
         address: "Jl. Kesehatan No. 123, Jakarta Selatan",
